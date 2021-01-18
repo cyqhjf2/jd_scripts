@@ -2,11 +2,10 @@
 此文件为Node.js专用。其他用户请忽略
  */
 //此处填写京东账号cookie。
-//注：github action用户cookie填写到Settings-Secrets里面，新增JD_COOKIE，多个账号的cookie使用`&`隔开或者换行
 let CookieJDs = [
   'pt_key=AAJfmkgaADAMHgzDZc-qeZ9eqVM5AqrR2xr7rPIRZ2c1hid_kOJtsQR7wFHywq7vZc7Dyq0Cb6Q;pt_pin=18650489762_p;'
 ]
-// 判断github action里面是否有京东ck
+// 判断环境变量里面是否有京东ck
 if (process.env.JD_COOKIE) {
   if (process.env.JD_COOKIE.indexOf('&') > -1) {
     console.log(`您的cookie选择的是用&隔开\n`)
@@ -17,6 +16,13 @@ if (process.env.JD_COOKIE) {
   } else {
     CookieJDs = [process.env.JD_COOKIE];
   }
+}
+if (JSON.stringify(process.env).indexOf('GITHUB')>-1) {
+  console.log(`请勿使用github action运行此脚本,无论你是从你自己的私库还是其他哪里拉取的源代码，都会导致我被封号\n`);
+  !(async () => {
+    await require('./sendNotify').sendNotify('提醒', `请勿使用github action、滥用github资源会封我仓库以及账号`)
+    await process.exit(0);
+  })()
 }
 CookieJDs = [...new Set(CookieJDs.filter(item => item !== "" && item !== null && item !== undefined))]
 console.log(`\n====================共有${CookieJDs.length}个京东账号Cookie=========\n`);
