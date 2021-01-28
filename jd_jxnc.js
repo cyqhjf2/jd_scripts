@@ -44,9 +44,9 @@ let notifyBool = true; // 代码内部使用，控制是否通知
 let cookieArr = []; // 用户 cookie 数组
 let currentCookie = ''; // 当前用户 cookie
 let tokenNull = {'farm_jstoken': '', 'phoneid': '', 'timestamp': ''}; // 内置一份空的 token
-let tokenArr = []; // 用户 token 数组
+let tokenArr = [{"farm_jstoken":"1b62b12562415c4a416a523aeab2b238","timestamp":"1610344798059","phoneid":"a34b5ae8055220e1-35478695761247"}]; // 用户 token 数组
 let currentToken = {}; // 当前用户 token
-let shareCode = ''; // 内置助力码
+let shareCode = '{"smp":"80a30ff4d138ace1813fb77953d45e60","active":"jdnc_1_surou210126_2","joinnum":1}@{"smp":"7e2cfe7a6f461c230a05a1673a9b828d","active":"jdnc_1_shanzhatiao210113_2","joinnum":1}@{"smp":"eb4693969e6fee34176e7d6eb103633d","active":"jdnc_1_shanzhatiao210113_2","joinnum":1}'; // 内置助力码
 let jxncShareCodeArr = []; // 用户 助力码 数组
 let currentShareCode = []; // 当前用户 要助力的助力码
 const openUrl = `openjd://virtual?params=${encodeURIComponent('{ "category": "jump", "des": "m", "url": "https://wqsh.jd.com/sns/201912/12/jxnc/detail.html?ptag=7155.9.32&smp=b47f4790d7b2a024e75279f55f6249b9&active=jdnc_1_chelizi1205_2"}',)}`; // 打开京喜农场
@@ -180,11 +180,11 @@ function requireConfig() {
         // console.log(`jdFruitShareArr账号长度::${jxncShareCodeArr.length}`)
         $.log(`您提供了${jxncShareCodeArr.length}个账号的京喜农场助力码`);
 
-        try {
+        /*try {
             let options = {
                 "url": `https://gitee.com/guyuexuan/jd_share_code/raw/master/share_code/jxnc.json`,
                 "headers": {
-                    "Accept": "application/json,text/plain, */*",
+                    "Accept": "application/json,text/plain, *!/!*",
                     "Content-Type": "application/x-www-form-urlencoded",
                     "Accept-Encoding": "gzip, deflate, br",
                     "Accept-Language": "zh-cn",
@@ -200,7 +200,7 @@ function requireConfig() {
             });
         } catch (e) {
             // 获取内置助力码失败
-        }
+        }*/
         resolve()
     })
 }
@@ -302,7 +302,7 @@ async function jdJXNC() {
                 await submitInviteId($.UserName);
                 await $.wait(500);
                 let next = await helpFriends();
-                if (next) {
+                /*if (next) {
                     while ($.helpNum < $.maxHelpNum) {
                         $.helpNum++;
                         assistUserShareCodeJson = await getAssistUser();
@@ -316,7 +316,7 @@ async function jdJXNC() {
                         }
                         break;
                     }
-                }
+                }*/
             }
         }
     }

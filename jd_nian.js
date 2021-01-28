@@ -45,14 +45,8 @@ if ($.isNode()) {
   cookiesArr = cookiesArr.filter(item => item !== "" && item !== null && item !== undefined);
 }
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
-const inviteCodes = [
-  `cgxZaDXWZPCmiUa2akPVmFMI27K6antJzucULQPYNim_BPEW1Dwd@cgxZdTXtIrPYuAqfDgSpusxr97nagU6hwFa3TXxnqM95u3ib-xt4nWqZdz8@cgxZdTXtIO-O6QmYDVf67KCEJ19JcybuMB2_hYu8NSNQg0oS2Z_FpMce45g@cgxZdTXtILiLvg7OAASp61meehou4OeZvqbjghsZlc3rI5SBk7b3InUqSQ0@cgxZ9_MZ8gByP7FZ368dN8oTZBwGieaH5HvtnvXuK1Epn_KK8yol8OYGw7h3M2j_PxSZvYA`,
-  `cgxZaDXWZPCmiUa2akPVmFMI27K6antJzucULQPYNim_BPEW1Dwd@cgxZdTXtIrPYuAqfDgSpusxr97nagU6hwFa3TXxnqM95u3ib-xt4nWqZdz8@cgxZdTXtIO-O6QmYDVf67KCEJ19JcybuMB2_hYu8NSNQg0oS2Z_FpMce45g@cgxZdTXtILiLvg7OAASp61meehou4OeZvqbjghsZlc3rI5SBk7b3InUqSQ0@cgxZdTXtIumO4w2cDgSqvYcqHwjaAzLxu0S371Dh_fctFJtN0tXYzdR7JaY`
-];
-const pkInviteCodes = [
-  'IgNWdiLGaPadvlqJQnnKp27-YpAvKvSYNTSkTGvZylf_0wcvqD9EMkohEd0@IgNWdiLGaPaZskfACQyhgLSpZWps-WtQEW3McifX@IgNWdiLGaPaAvmHPAQf769XqjJjMyRirPzN9-AS-WHY9Y_G7t9Cwe5gdiI2qEvHb@IgNWdiLGaPYCeJUfsq18UNi5ln9xEZSPRdOue8Wl3hJTS2SQzU0vulL0fHeULJaIfgqHFd7f_Kk@IgNWdiLGaPYCeJUfsq18UNi5ln9xEZSPRdOue8Wl3hLRjZBAJLHzBpcl18AeskNYctp-8A',
-  'IgNWdiLGaPadvlqJQnnKp27-YpAvKvSYNTSkTGvZylf_0wcvqD9EMkohEd0@IgNWdiLGaPaZskfACQyhgLSpZWps-WtQEW3McifX@IgNWdiLGaPaAvmHPAQf769XqjJjMyRirPzN9-AS-WHY9Y_G7t9Cwe5gdiI2qEvHb@IgNWdiLGaPYCeJUfsq18UNi5ln9xEZSPRdOue8Wl3hJTS2SQzU0vulL0fHeULJaIfgqHFd7f_Kk@IgNWdiLGaPYCeJUfsq18UNi5ln9xEZSPRdOue8Wl3hLRjZBAJLHzBpcl18AeskNYctp-8A'
-]
+const inviteCodes = [];
+const pkInviteCodes = [];
 !(async () => {
   await requireConfig();
   if (!cookiesArr[0]) {
@@ -1111,7 +1105,7 @@ function shareCodesFormat() {
     $.newShareCodes = [];
     if ($.shareCodesArr[$.index - 1]) {
       $.newShareCodes = $.shareCodesArr[$.index - 1].split('@');
-    } else {
+    }/* else {
       console.log(`由于您第${$.index}个京东账号未提供shareCode,将采纳本脚本自带的助力码\n`)
       const tempIndex = $.index > inviteCodes.length ? (inviteCodes.length - 1) : ($.index - 1);
       $.newShareCodes = inviteCodes[tempIndex].split('@');
@@ -1119,7 +1113,7 @@ function shareCodesFormat() {
     const readShareCodeRes = await readShareCode();
     if (readShareCodeRes && readShareCodeRes.code === 200) {
       $.newShareCodes = [...new Set([...$.newShareCodes, ...(readShareCodeRes.data || [])])];
-    }
+    }*/
     console.log(`第${$.index}个京东账号将要助力的好友${JSON.stringify($.newShareCodes)}`)
     resolve();
   })
@@ -1131,7 +1125,7 @@ function shareCodesFormatPk() {
     $.newShareCodesPk = [];
     if ($.shareCodesPkArr[$.index - 1]) {
       $.newShareCodesPk = $.shareCodesPkArr[$.index - 1].split('@');
-    } else {
+    }/* else {
       console.log(`由于您第${$.index}个京东账号未提供shareCode,将采纳本脚本自带的助力码\n`)
       const tempIndex = $.index > pkInviteCodes.length ? (pkInviteCodes.length - 1) : ($.index - 1);
       $.newShareCodesPk = pkInviteCodes[tempIndex].split('@');
@@ -1141,7 +1135,7 @@ function shareCodesFormatPk() {
       readShareCodeRes = await readShareCodePk();
     if (readShareCodeRes && readShareCodeRes.code === 200) {
       $.newShareCodesPk = [...new Set([...$.newShareCodesPk, ...(readShareCodeRes.data || [])])];
-    }
+    }*/
     console.log(`第${$.index}个京东账号将要助力的PK好友${JSON.stringify($.newShareCodesPk)}`)
     resolve();
   })
@@ -1151,15 +1145,31 @@ function requireConfig() {
   return new Promise(resolve => {
     console.log(`开始获取${$.name}配置文件\n`);
     //Node.js用户请在jdCookie.js处填写京东ck;
-    let shareCodes = []
+    /*let shareCodes = [
+        'cgxZdTXtX8WYqW-WbXnJs6CPabZ0Kss1s_SHu9mUJ6aqzyCHAtXSMO4@cgxZdTXtI72O6A6aDACs51uGG0FcnHFQm1_0orOjDLalTEAdX5G9u_giySk@cgxZ-PQv8TFQPKZ3CAap6SORVHqzDJSyFIkxkFLhGzPYYvWl9w@cgxZLmKLJLvT7QnPDgTGr45ELImOS55XB6gF__gEDeMOj18elw',
+      'cgxZLmmEIbre4gfODgfGr0W6Xx6alUUqk6G_6yzZ6-AOybyhLA@cgxZdTXtI72O6A6aDACs51uGG0FcnHFQm1_0orOjDLalTEAdX5G9u_giySk@cgxZ-PQv8TFQPKZ3CAap6SORVHqzDJSyFIkxkFLhGzPYYvWl9w@cgxZLmKLJLvT7QnPDgTGr45ELImOS55XB6gF__gEDeMOj18elw',
+      'cgxZLmmEIbre4gfODgfGr0W6Xx6alUUqk6G_6yzZ6-AOybyhLA@cgxZdTXtX8WYqW-WbXnJs6CPabZ0Kss1s_SHu9mUJ6aqzyCHAtXSMO4@cgxZ-PQv8TFQPKZ3CAap6SORVHqzDJSyFIkxkFLhGzPYYvWl9w@cgxZLmKLJLvT7QnPDgTGr45ELImOS55XB6gF__gEDeMOj18elw',
+      'cgxZLmmEIbre4gfODgfGr0W6Xx6alUUqk6G_6yzZ6-AOybyhLA@cgxZdTXtX8WYqW-WbXnJs6CPabZ0Kss1s_SHu9mUJ6aqzyCHAtXSMO4@cgxZdTXtI72O6A6aDACs51uGG0FcnHFQm1_0orOjDLalTEAdX5G9u_giySk@cgxZLmKLJLvT7QnPDgTGr45ELImOS55XB6gF__gEDeMOj18elw',
+      'cgxZLmmEIbre4gfODgfGr0W6Xx6alUUqk6G_6yzZ6-AOybyhLA@cgxZdTXtX8WYqW-WbXnJs6CPabZ0Kss1s_SHu9mUJ6aqzyCHAtXSMO4@cgxZdTXtI72O6A6aDACs51uGG0FcnHFQm1_0orOjDLalTEAdX5G9u_giySk@cgxZ-PQv8TFQPKZ3CAap6SORVHqzDJSyFIkxkFLhGzPYYvWl9w@cgxZLmKLJLvT7QnPDgTGr45ELImOS55XB6gF__gEDeMOj18elw',
+      'cgxZLmmEIbre4gfODgfGr0W6Xx6alUUqk6G_6yzZ6-AOybyhLA@cgxZdTXtX8WYqW-WbXnJs6CPabZ0Kss1s_SHu9mUJ6aqzyCHAtXSMO4@cgxZdTXtI72O6A6aDACs51uGG0FcnHFQm1_0orOjDLalTEAdX5G9u_giySk@cgxZ-PQv8TFQPKZ3CAap6SORVHqzDJSyFIkxkFLhGzPYYvWl9w@cgxZLmKLJLvT7QnPDgTGr45ELImOS55XB6gF__gEDeMOj18elw',
+      'cgxZLmmEIbre4gfODgfGr0W6Xx6alUUqk6G_6yzZ6-AOybyhLA@cgxZdTXtX8WYqW-WbXnJs6CPabZ0Kss1s_SHu9mUJ6aqzyCHAtXSMO4@cgxZdTXtI72O6A6aDACs51uGG0FcnHFQm1_0orOjDLalTEAdX5G9u_giySk@cgxZ-PQv8TFQPKZ3CAap6SORVHqzDJSyFIkxkFLhGzPYYvWl9w@cgxZLmKLJLvT7QnPDgTGr45ELImOS55XB6gF__gEDeMOj18elw',
+      'cgxZLmmEIbre4gfODgfGr0W6Xx6alUUqk6G_6yzZ6-AOybyhLA@cgxZdTXtX8WYqW-WbXnJs6CPabZ0Kss1s_SHu9mUJ6aqzyCHAtXSMO4@cgxZdTXtI72O6A6aDACs51uGG0FcnHFQm1_0orOjDLalTEAdX5G9u_giySk@cgxZ-PQv8TFQPKZ3CAap6SORVHqzDJSyFIkxkFLhGzPYYvWl9w@cgxZLmKLJLvT7QnPDgTGr45ELImOS55XB6gF__gEDeMOj18elw',
+      'cgxZLmmEIbre4gfODgfGr0W6Xx6alUUqk6G_6yzZ6-AOybyhLA@cgxZdTXtX8WYqW-WbXnJs6CPabZ0Kss1s_SHu9mUJ6aqzyCHAtXSMO4@cgxZdTXtI72O6A6aDACs51uGG0FcnHFQm1_0orOjDLalTEAdX5G9u_giySk@cgxZ-PQv8TFQPKZ3CAap6SORVHqzDJSyFIkxkFLhGzPYYvWl9w@cgxZLmKLJLvT7QnPDgTGr45ELImOS55XB6gF__gEDeMOj18elw',
+      'cgxZLmmEIbre4gfODgfGr0W6Xx6alUUqk6G_6yzZ6-AOybyhLA@cgxZdTXtX8WYqW-WbXnJs6CPabZ0Kss1s_SHu9mUJ6aqzyCHAtXSMO4@cgxZdTXtI72O6A6aDACs51uGG0FcnHFQm1_0orOjDLalTEAdX5G9u_giySk@cgxZ-PQv8TFQPKZ3CAap6SORVHqzDJSyFIkxkFLhGzPYYvWl9w',
+      'cgxZLmmEIbre4gfODgfGr0W6Xx6alUUqk6G_6yzZ6-AOybyhLA@cgxZdTXtX8WYqW-WbXnJs6CPabZ0Kss1s_SHu9mUJ6aqzyCHAtXSMO4@cgxZdTXtI72O6A6aDACs51uGG0FcnHFQm1_0orOjDLalTEAdX5G9u_giySk@cgxZ-PQv8TFQPKZ3CAap6SORVHqzDJSyFIkxkFLhGzPYYvWl9w@cgxZLmKLJLvT7QnPDgTGr45ELImOS55XB6gF__gEDeMOj18elw',
+      'cgxZLmmEIbre4gfODgfGr0W6Xx6alUUqk6G_6yzZ6-AOybyhLA@cgxZdTXtX8WYqW-WbXnJs6CPabZ0Kss1s_SHu9mUJ6aqzyCHAtXSMO4@cgxZdTXtI72O6A6aDACs51uGG0FcnHFQm1_0orOjDLalTEAdX5G9u_giySk@cgxZ-PQv8TFQPKZ3CAap6SORVHqzDJSyFIkxkFLhGzPYYvWl9w@cgxZLmKLJLvT7QnPDgTGr45ELImOS55XB6gF__gEDeMOj18elw'
+
+        ///jdnian cgxZLmmEIbre4gfODgfGr0W6Xx6alUUqk6G_6yzZ6-AOybyhLA&cgxZdTXtX8WYqW-WbXnJs6CPabZ0Kss1s_SHu9mUJ6aqzyCHAtXSMO4&cgxZdTXtI72O6A6aDACs51uGG0FcnHFQm1_0orOjDLalTEAdX5G9u_giySk&cgxZ-PQv8TFQPKZ3CAap6SORVHqzDJSyFIkxkFLhGzPYYvWl9w&cgxZLmKLJLvT7QnPDgTGr45ELImOS55XB6gF__gEDeMOj18elw
+    ];*/
+    let shareCodes = [];
     console.log(`共${cookiesArr.length}个京东账号\n`);
-    if ($.isNode() && process.env.JDNIAN_SHARECODES) {
+    /*if ($.isNode() && process.env.JDNIAN_SHARECODES) {
       if (process.env.JDNIAN_SHARECODES.indexOf('\n') > -1) {
         shareCodes = process.env.JDNIAN_SHARECODES.split('\n');
       } else {
         shareCodes = process.env.JDNIAN_SHARECODES.split('&');
       }
-    }
+    }*/
     $.shareCodesArr = [];
     if ($.isNode()) {
       Object.keys(shareCodes).forEach((item) => {
@@ -1177,7 +1187,23 @@ function requireConfig() {
         shareCodesPK = process.env.JDNIANPK_SHARECODES.split('&');
       }
     }
-    $.shareCodesPkArr = [];
+    $.shareCodesPkArr =  [
+      'IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_M6LFvp2VbLUg-z0ByOn7gDd@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_JXXf4QJE_lY0cDsDzyiuh3uDC8@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_JXXf_hxBbiy31HXZ6Q9hZ6wR7yl@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_BgWvSr922wzyuz0yKlio2T5',
+      'IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_M6LFvp2VbLUg-z0ByOn7gDd@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_JXXf4QJE_lY0cDsDzyiuh3uDC8@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_JXXf_hxBbiy31HXZ6Q9hZ6wR7yl@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_BgWvSr922wzyuz0yKlio2T5',
+      'IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_M6LFvp2VbLUg-z0ByOn7gDd@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_JXXf4QJE_lY0cDsDzyiuh3uDC8@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_JXXf_hxBbiy31HXZ6Q9hZ6wR7yl@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_BgWvSr922wzyuz0yKlio2T5',
+      'IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_M6LFvp2VbLUg-z0ByOn7gDd@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_JXXf4QJE_lY0cDsDzyiuh3uDC8@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_JXXf_hxBbiy31HXZ6Q9hZ6wR7yl@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_BgWvSr922wzyuz0yKlio2T5',
+      'IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_M6LFvp2VbLUg-z0ByOn7gDd@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_JXXf4QJE_lY0cDsDzyiuh3uDC8@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_JXXf_hxBbiy31HXZ6Q9hZ6wR7yl@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_BgWvSr922wzyuz0yKlio2T5',
+      'IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_M6LFvp2VbLUg-z0ByOn7gDd@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_JXXf4QJE_lY0cDsDzyiuh3uDC8@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_JXXf_hxBbiy31HXZ6Q9hZ6wR7yl@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_BgWvSr922wzyuz0yKlio2T5',
+      'IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_M6LFvp2VbLUg-z0ByOn7gDd@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_JXXf4QJE_lY0cDsDzyiuh3uDC8@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_JXXf_hxBbiy31HXZ6Q9hZ6wR7yl@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_BgWvSr922wzyuz0yKlio2T5',
+      'IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_M6LFvp2VbLUg-z0ByOn7gDd@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_JXXf4QJE_lY0cDsDzyiuh3uDC8@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_JXXf_hxBbiy31HXZ6Q9hZ6wR7yl@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_BgWvSr922wzyuz0yKlio2T5',
+      'IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_M6LFvp2VbLUg-z0ByOn7gDd@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_JXXf4QJE_lY0cDsDzyiuh3uDC8@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_JXXf_hxBbiy31HXZ6Q9hZ6wR7yl@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_BgWvSr922wzyuz0yKlio2T5',
+      'IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_M6LFvp2VbLUg-z0ByOn7gDd@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_JXXf4QJE_lY0cDsDzyiuh3uDC8@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_JXXf_hxBbiy31HXZ6Q9hZ6wR7yl@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_BgWvSr922wzyuz0yKlio2T5',
+      'IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_M6LFvp2VbLUg-z0ByOn7gDd@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_JXXf4QJE_lY0cDsDzyiuh3uDC8@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_JXXf_hxBbiy31HXZ6Q9hZ6wR7yl@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_BgWvSr922wzyuz0yKlio2T5',
+      'IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_M6LFvp2VbLUg-z0ByOn7gDd@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_JXXf4QJE_lY0cDsDzyiuh3uDC8@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_JXXf_hxBbiy31HXZ6Q9hZ6wR7yl@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_BgWvSr922wzyuz0yKlio2T5',
+      'IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_M6LFvp2VbLUg-z0ByOn7gDd@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_JXXf4QJE_lY0cDsDzyiuh3uDC8@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_JXXf_hxBbiy31HXZ6Q9hZ6wR7yl@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_BgWvSr922wzyuz0yKlio2T5',
+      'IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_M6LFvp2VbLUg-z0ByOn7gDd@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_JXXf4QJE_lY0cDsDzyiuh3uDC8@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_JXXf_hxBbiy31HXZ6Q9hZ6wR7yl@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_BgWvSr922wzyuz0yKlio2T5',
+      'IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_M6LFvp2VbLUg-z0ByOn7gDd@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_JXXf4QJE_lY0cDsDzyiuh3uDC8@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_JXXf_hxBbiy31HXZ6Q9hZ6wR7yl@IgNWdiLGaPbb4gjMCAGh5hIyvShMuIAO_BgWvSr922wzyuz0yKlio2T5',
+    ];
     if ($.isNode()) {
       Object.keys(shareCodesPK).forEach((item) => {
         if (shareCodesPK[item]) {

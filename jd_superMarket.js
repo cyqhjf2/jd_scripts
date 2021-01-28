@@ -73,7 +73,7 @@ let shareCodes = [ // IOS本地脚本用户这个列表填入你要助力的好�
       }
       message = '';
       subTitle = '';
-      //await shareCodesFormat();//格式化助力码
+      await shareCodesFormat();//格式化助力码
       await jdSuperMarket();
       await showMsg();
       // await businessCircleActivity();
@@ -1487,11 +1487,11 @@ function shareCodesFormat() {
     console.log(`第${$.index}个京东账号的助力码:::${jdSuperMarketShareArr[$.index - 1]}`)
     if (jdSuperMarketShareArr[$.index - 1]) {
       newShareCodes = jdSuperMarketShareArr[$.index - 1].split('@');
-    } else {
+    }/* else {
       console.log(`由于您未提供与京京东账号相对应的shareCode,下面助力将采纳本脚本自带的助力码\n`)
       const tempIndex = $.index > shareCodes.length ? (shareCodes.length - 1) : ($.index - 1);
       newShareCodes = shareCodes[tempIndex].split('@');
-    }
+    }*/
     console.log(`格式化后第${$.index}个京东账号的助力码${JSON.stringify(newShareCodes)}`)
     resolve();
   })

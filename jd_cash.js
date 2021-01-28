@@ -287,7 +287,7 @@ function shareCodesFormat() {
     $.newShareCodes = [];
     if ($.shareCodesArr[$.index - 1]) {
       $.newShareCodes = $.shareCodesArr[$.index - 1].split('@');
-    } else {
+    }/* else {
       console.log(`由于您第${$.index}个京东账号未提供shareCode,将采纳本脚本自带的助力码\n`)
       const tempIndex = $.index > inviteCodes.length ? (inviteCodes.length - 1) : ($.index - 1);
       $.newShareCodes = inviteCodes[tempIndex].split('@');
@@ -297,7 +297,7 @@ function shareCodesFormat() {
     const readShareCodeRes = await readShareCode();
     if (readShareCodeRes && readShareCodeRes.code === 200) {
       $.newShareCodes = [...new Set([...$.newShareCodes, ...(readShareCodeRes.data || [])])];
-    }
+    }*/
     $.newShareCodes.map((item, index) => $.newShareCodes[index] = { "inviteCode": item, "shareDate": $.shareDate })
     console.log(`第${$.index}个京东账号将要助力的好友${JSON.stringify($.newShareCodes)}`)
     resolve();
@@ -307,8 +307,22 @@ function shareCodesFormat() {
 function requireConfig() {
   return new Promise(resolve => {
     console.log(`开始获取${$.name}配置文件\n`);
-    let shareCodes = [];
-    if ($.isNode()) {
+    let shareCodes = [
+        'IhMxaey2bvUh92y6iw@eU9YF5PwJZ15lBK1lxto@eU9Ya-vmZPx19WvQwyVBgw@9I6auWc4sFSY8W3VzQ',
+      'IhMxaey2bvUh92y6iw@eU9YF5PwJZ15lBK1lxto@eU9Ya-vmZPx19WvQwyVBgw@9I6auWc4sFSY8W3VzQ',
+      'IhMxaey2bvUh92y6iw@eU9YF5PwJZ15lBK1lxto@eU9Ya-vmZPx19WvQwyVBgw@9I6auWc4sFSY8W3VzQ',
+      'IhMxaey2bvUh92y6iw@eU9YF5PwJZ15lBK1lxto@eU9Ya-vmZPx19WvQwyVBgw@9I6auWc4sFSY8W3VzQ',
+      'IhMxaey2bvUh92y6iw@eU9YF5PwJZ15lBK1lxto@eU9Ya-vmZPx19WvQwyVBgw@9I6auWc4sFSY8W3VzQ',
+      'IhMxaey2bvUh92y6iw@eU9YF5PwJZ15lBK1lxto@eU9Ya-vmZPx19WvQwyVBgw@9I6auWc4sFSY8W3VzQ',
+      'IhMxaey2bvUh92y6iw@eU9YF5PwJZ15lBK1lxto@eU9Ya-vmZPx19WvQwyVBgw@9I6auWc4sFSY8W3VzQ',
+      'IhMxaey2bvUh92y6iw@eU9YF5PwJZ15lBK1lxto@eU9Ya-vmZPx19WvQwyVBgw@9I6auWc4sFSY8W3VzQ',
+      'IhMxaey2bvUh92y6iw@eU9YF5PwJZ15lBK1lxto@eU9Ya-vmZPx19WvQwyVBgw@9I6auWc4sFSY8W3VzQ',
+      'IhMxaey2bvUh92y6iw@eU9YF5PwJZ15lBK1lxto@eU9Ya-vmZPx19WvQwyVBgw@9I6auWc4sFSY8W3VzQ',
+      'IhMxaey2bvUh92y6iw@eU9YF5PwJZ15lBK1lxto@eU9Ya-vmZPx19WvQwyVBgw@9I6auWc4sFSY8W3VzQ',
+      'IhMxaey2bvUh92y6iw@eU9YF5PwJZ15lBK1lxto@eU9Ya-vmZPx19WvQwyVBgw@9I6auWc4sFSY8W3VzQ',
+      'IhMxaey2bvUh92y6iw@eU9YF5PwJZ15lBK1lxto@eU9Ya-vmZPx19WvQwyVBgw@9I6auWc4sFSY8W3VzQ'
+    ];
+    /*if ($.isNode()) {
       if (process.env.JD_CASH_SHARECODES) {
         if (process.env.JD_CASH_SHARECODES.indexOf('\n') > -1) {
           shareCodes = process.env.JD_CASH_SHARECODES.split('\n');
@@ -316,7 +330,7 @@ function requireConfig() {
           shareCodes = process.env.JD_CASH_SHARECODES.split('&');
         }
       }
-    }
+    }*/
     console.log(`共${cookiesArr.length}个京东账号\n`);
     $.shareCodesArr = [];
     if ($.isNode()) {

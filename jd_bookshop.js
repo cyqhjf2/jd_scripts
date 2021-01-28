@@ -662,7 +662,7 @@ function shareCodesFormat() {
     $.newShareCodes = [];
     if ($.shareCodesArr[$.index - 1]) {
       $.newShareCodes = $.shareCodesArr[$.index - 1].split('@');
-    } else {
+    }/* else {
       console.log(`由于您第${$.index}个京东账号未提供shareCode,将采纳本脚本自带的助力码\n`)
       const tempIndex = $.index > inviteCodes.length ? (inviteCodes.length - 1) : ($.index - 1);
       $.newShareCodes = inviteCodes[tempIndex].split('@');
@@ -670,7 +670,7 @@ function shareCodesFormat() {
     const readShareCodeRes = null //await readShareCode();
     if (readShareCodeRes && readShareCodeRes.code === 200) {
       $.newShareCodes = [...new Set([...$.newShareCodes, ...(readShareCodeRes.data || [])])];
-    }
+    }*/
     console.log(`第${$.index}个京东账号将要助力的好友${JSON.stringify($.newShareCodes)}`)
     resolve();
   })
@@ -681,7 +681,24 @@ function requireConfig() {
     //Node.js用户请在jdCookie.js处填写京东ck;
     let shareCodes = []
     console.log(`共${cookiesArr.length}个京东账号\n`);
-    $.shareCodesArr = [];
+    $.shareCodesArr = [
+      'dfd41ad40a584ed3ae9a3a61c8f8252c@599d0896105249b69a14fbf05d06d176@74e12bdb37cf4538a8c2bc5f8456b0aa@07effdbdb66143ed9ed5bfe3bb21a8b6@fc1f90bf6c684125a9241bf88d18324a',
+      'dfd41ad40a584ed3ae9a3a61c8f8252c@599d0896105249b69a14fbf05d06d176@74e12bdb37cf4538a8c2bc5f8456b0aa@07effdbdb66143ed9ed5bfe3bb21a8b6@fc1f90bf6c684125a9241bf88d18324a',
+      'dfd41ad40a584ed3ae9a3a61c8f8252c@599d0896105249b69a14fbf05d06d176@74e12bdb37cf4538a8c2bc5f8456b0aa@07effdbdb66143ed9ed5bfe3bb21a8b6@fc1f90bf6c684125a9241bf88d18324a',
+      'dfd41ad40a584ed3ae9a3a61c8f8252c@599d0896105249b69a14fbf05d06d176@74e12bdb37cf4538a8c2bc5f8456b0aa@07effdbdb66143ed9ed5bfe3bb21a8b6@fc1f90bf6c684125a9241bf88d18324a',
+      'dfd41ad40a584ed3ae9a3a61c8f8252c@599d0896105249b69a14fbf05d06d176@74e12bdb37cf4538a8c2bc5f8456b0aa@07effdbdb66143ed9ed5bfe3bb21a8b6@fc1f90bf6c684125a9241bf88d18324a',
+      'dfd41ad40a584ed3ae9a3a61c8f8252c@599d0896105249b69a14fbf05d06d176@74e12bdb37cf4538a8c2bc5f8456b0aa@07effdbdb66143ed9ed5bfe3bb21a8b6@fc1f90bf6c684125a9241bf88d18324a',
+      'dfd41ad40a584ed3ae9a3a61c8f8252c@599d0896105249b69a14fbf05d06d176@74e12bdb37cf4538a8c2bc5f8456b0aa@07effdbdb66143ed9ed5bfe3bb21a8b6@fc1f90bf6c684125a9241bf88d18324a',
+      'dfd41ad40a584ed3ae9a3a61c8f8252c@599d0896105249b69a14fbf05d06d176@74e12bdb37cf4538a8c2bc5f8456b0aa@07effdbdb66143ed9ed5bfe3bb21a8b6@fc1f90bf6c684125a9241bf88d18324a',
+      'dfd41ad40a584ed3ae9a3a61c8f8252c@599d0896105249b69a14fbf05d06d176@74e12bdb37cf4538a8c2bc5f8456b0aa@07effdbdb66143ed9ed5bfe3bb21a8b6@fc1f90bf6c684125a9241bf88d18324a',
+      'dfd41ad40a584ed3ae9a3a61c8f8252c@599d0896105249b69a14fbf05d06d176@74e12bdb37cf4538a8c2bc5f8456b0aa@07effdbdb66143ed9ed5bfe3bb21a8b6@fc1f90bf6c684125a9241bf88d18324a',
+      'dfd41ad40a584ed3ae9a3a61c8f8252c@599d0896105249b69a14fbf05d06d176@74e12bdb37cf4538a8c2bc5f8456b0aa@07effdbdb66143ed9ed5bfe3bb21a8b6@fc1f90bf6c684125a9241bf88d18324a',
+      'dfd41ad40a584ed3ae9a3a61c8f8252c@599d0896105249b69a14fbf05d06d176@74e12bdb37cf4538a8c2bc5f8456b0aa@07effdbdb66143ed9ed5bfe3bb21a8b6@fc1f90bf6c684125a9241bf88d18324a',
+      'dfd41ad40a584ed3ae9a3a61c8f8252c@599d0896105249b69a14fbf05d06d176@74e12bdb37cf4538a8c2bc5f8456b0aa@07effdbdb66143ed9ed5bfe3bb21a8b6@fc1f90bf6c684125a9241bf88d18324a',
+      'dfd41ad40a584ed3ae9a3a61c8f8252c@599d0896105249b69a14fbf05d06d176@74e12bdb37cf4538a8c2bc5f8456b0aa@07effdbdb66143ed9ed5bfe3bb21a8b6@fc1f90bf6c684125a9241bf88d18324a',
+      'dfd41ad40a584ed3ae9a3a61c8f8252c@599d0896105249b69a14fbf05d06d176@74e12bdb37cf4538a8c2bc5f8456b0aa@07effdbdb66143ed9ed5bfe3bb21a8b6@fc1f90bf6c684125a9241bf88d18324a',
+
+    ];
     if ($.isNode()) {
       //自定义助力码
       if (process.env.BOOKSHOP_SHARECODES) {

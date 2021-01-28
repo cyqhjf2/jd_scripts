@@ -3,7 +3,23 @@
  */
 //此处填写京东账号cookie。
 let CookieJDs = [
-  'pt_key=AAJfmkgaADAMHgzDZc-qeZ9eqVM5AqrR2xr7rPIRZ2c1hid_kOJtsQR7wFHywq7vZc7Dyq0Cb6Q;pt_pin=18650489762_p;'
+    'pt_key=AAJf9CcDADCh5BYnp0iZUW-J6snOsd6hoviaSDnfxFmgr5d1yEKSQ-ZE-db2Qrw9TKwqK_qwvls;pt_pin=18650489762_p;',
+    'pt_key=AAJf9CqYADB46STGY_MN633Ed1AR-B0sEMDnVV3_UrffGvzwqzWeZNghusczwjZoOvGGWku_0wE;pt_pin=jd_KOrsQoULPlXK;',
+    'pt_key=AAJf9CxeADBFh-QGYWkTJ66oOMCZbdJlD5Nht3q0ux7uu6v3USi7EOebLonbNPjPzLX-D_60aFY;pt_pin=jd_77d20c4558fbe;',
+    'pt_key=AAJf9GloADCbvZ1IVhWFmto57a0710VymE6og2_GqAN1sdyPb1wqIvs3oqPMFMwXVZxZ4eAoeoQ;pt_pin=jd_vyeLCjWpuHjd;',
+    'pt_key=AAJf9CX_ADDNTSB7XezKsMnIoY1RTmOmRDNH3gNUtX9q2p31B3F03M-_ZdQoGmJtGNVkE9p95RM;pt_pin=%E7%A5%9D%E5%BB%BA%E6%98%8E0306;',
+
+    'pt_key=AAJgDXmsADCeCFY4Zdw1NLA2OWNCm_ZSMH4taJmeLzZBU0oP8R7YFTd-v_mWZiNIgZXWcfplYh4;pt_pin=jd_AvrydtTcZnZj;',
+    'pt_key=AAJgDXneADDyJJYqXj6Gzi-D76Q9DNSKon36sL3v8GR00MQZb4F8V7ucU5G8HNta3adXvCQfhZY;pt_pin=jd_gqlTQCBoimMu;',
+    'pt_key=AAJf9CeoADD7PruqbsLOgTlKRq_QrLfUwNZr6LGnE0KdbcrqSWoACtPnGffkEECvcobqYGyVq3w;pt_pin=jd_795c379c25b15;',
+    'pt_key=AAJf9DIJADDz9Uw34CCBrwsoPtvv_cetAu3wRCLyiUS0mw4VaM2XUUKGE_c447mpUEDRtAym8Qw;pt_pin=jd_7aac884f55669;',
+    'pt_key=AAJgDXoSADC0JlGDDGOeg_Mvm0Iz2ul13WDRMsQCUeuUZgow3kNUXRER6XI-Dgtt8TY5tRO8jhk;pt_pin=Dick139;',
+    'pt_key=AAJgDXrZADCa82n0JLcGxy6ROXWOBTaL-ZGFJJczQZkvJshDO9746qn4jK86_NUg90ORBgv1elo;pt_pin=jd_uzAlKbHwraCG;',
+
+    'pt_key=AAJf9EH1ADAZEfdrSnO-HEMfQ6d1YWxjp1e4rhkp7ZQXQwi2B07y71ksR396RM6SHFVp0syRCyU;pt_pin=13901977661_p;',
+    'pt_key=AAJf9EQVADA-7Mz3rsn_wxVBFGyV61dGowVeAK4Z4mo9WenzIdU2n3yWI8byUsWbLktdoU1_TtI;pt_pin=xrzhang;',
+    'pt_key=AAJf9CeGADCtMKhzFQfBSMeYBid2I1-tlvhagUDtnNCdGHL-tGIDdJdxpBszl65vfnc60vRdK1Q;pt_pin=ying_xx;',
+    'pt_key=AAJf9GdfADBAnCvxRzM00lsVM2s89tP2UVlv971dkAFjdguhhQHjax58gFkflnRczrmUu0pureo;pt_pin=raoxiaoting;'
 ]
 // 判断环境变量里面是否有京东ck
 if (process.env.JD_COOKIE) {
