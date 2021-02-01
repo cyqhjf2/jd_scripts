@@ -41,7 +41,7 @@ const inviteCodes = [
   'GFwo6PntxDHH95ZRzZ5uAg=='
 ];
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
-$.tuanIds = ['Xf93k6BV7XUicP5yylNf_Q=='];
+$.tuanIds = ['n_lYKc3Angs3tjIbKiertQ=='];
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
@@ -111,7 +111,7 @@ if ($.isNode()) {
 async function jdDreamFactory() {
   await userInfo();
   await QueryFriendList();//查询今日招工情况以及剩余助力次数
-  // await joinLeaderTuan();//参团
+  await joinLeaderTuan();//参团
   await helpFriends();
   if (!$.unActive) return
   await getUserElectricity();
@@ -121,7 +121,7 @@ async function jdDreamFactory() {
   await PickUp();//收取自家的地下零件
   await stealFriend();
   await tuanActivity();
-  await QueryAllTuan();
+  //await QueryAllTuan();
   await exchangeProNotify();
   await showMsg();
 }
@@ -1049,14 +1049,14 @@ async function joinLeaderTuan() {
       await JoinTuan(tuanId);
     }
   }
-  $.tuanIdS = null;
+  /*$.tuanIdS = null;
   if (!$.tuanIdS) await updateTuanIdsCDN('https://gitee.com/shylocks/updateTeam/raw/main/jd_updateFactoryTuanId.json');
   if ($.tuanIdS && $.tuanIdS.tuanIds) {
     for (let tuanId of $.tuanIdS.tuanIds) {
       if (!tuanId) continue
       await JoinTuan(tuanId);
     }
-  }
+  }*/
 }
 function JoinTuan(tuanId) {
   return new Promise((resolve) => {
@@ -1366,12 +1366,12 @@ function shareCodesFormat() {
 }
 function requireConfig() {
   return new Promise(async resolve => {
-    await updateTuanIdsCDN('https://gitee.com/lxk0301/updateTeam/raw/master/jd_updateFactoryTuanId.json');
+    /*await updateTuanIdsCDN('https://gitee.com/lxk0301/updateTeam/raw/master/jd_updateFactoryTuanId.json');
     if (!$.tuanIdS) await updateTuanIds();
     if (!$.tuanIdS) await updateTuanIdsCDN('https://cdn.jsdelivr.net/gh/LXK9301/updateTeam@master/jd_updateFactoryTuanId.json');
     if ($.tuanIdS && $.tuanIdS.tuanActiveId) {
       tuanActiveId = $.tuanIdS.tuanActiveId;
-    }
+    }*/
     console.log(`开始获取${$.name}配置文件\n`);
     console.log(`tuanActiveId: ${tuanActiveId}`)
     //Node.js用户请在jdCookie.js处填写京东ck;
@@ -1385,7 +1385,6 @@ function requireConfig() {
         }
       })
     }
-    // console.log(`\n种豆得豆助力码::${JSON.stringify($.shareCodesArr)}`);
     console.log(`您提供了${$.shareCodesArr.length}个账号的${$.name}助力码\n`);
     resolve()
   })
